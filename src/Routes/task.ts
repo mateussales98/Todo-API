@@ -1,19 +1,21 @@
 import { Router } from "express";
 import { taskController } from "../Controller/Task/controller";
+import { erroMiddleware } from "./Middlewares/Error/middleware";
 
 const taskRouter = Router();
 const controller = new taskController();
+const errroMiddleware = new erroMiddleware()
 
-taskRouter.get("/", controller.findAll);
+taskRouter.get("/", errroMiddleware.handleAsync(controller.findAll));
 
-taskRouter.get("/:id", controller.find);
+taskRouter.get("/:id", errroMiddleware.handleAsync(controller.find));
 
-taskRouter.post("/", controller.create);
+taskRouter.post("/", errroMiddleware.handleAsync(controller.create));
 
-taskRouter.put("/:id", controller.update);
+taskRouter.put("/:id", errroMiddleware.handleAsync(controller.update));
 
-taskRouter.patch("/:id",controller.complete);
+taskRouter.patch("/:id", errroMiddleware.handleAsync(controller.complete));
 
-taskRouter.delete("/:id", controller.exclude);
+taskRouter.delete("/:id", errroMiddleware.handleAsync(controller.exclude));
 
 export default taskRouter;

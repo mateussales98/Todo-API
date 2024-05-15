@@ -4,7 +4,6 @@ import { taskService } from "../../Model/Task/service";
 import { create, update } from "./dto";
 
 export class taskController {
-  private service = new taskService();
   async create(req: Request, res: Response) {
     try {
       const { title, description }: create = req.body;
@@ -22,9 +21,10 @@ export class taskController {
         );
       }
       try {
-        const task = await this.service.create({ title, description });
+        const task = await new taskService().create({ title, description });
         return res.status(201).json(task);
       } catch (error: any) {
+        console.log(error.message);
         throw new errorResponse(500, "Error in Create Task");
       }
     } catch (error: any) {
@@ -36,7 +36,7 @@ export class taskController {
   }
   async findAll(req: Request, res: Response) {
     try {
-      const tasks = await this.service.readAll();
+      const tasks = await new taskService().readAll();
       return res.status(200).json(tasks);
     } catch (error: any) {
       throw new errorResponse(
@@ -49,7 +49,7 @@ export class taskController {
     try {
       const { id } = req.params;
 
-      const task = await this.service.read(id);
+      const task = await new taskService().read(id);
 
       return res.status(200).json(task);
 
@@ -66,7 +66,7 @@ export class taskController {
 
       const { title, description }: update = req.body;
 
-      const task = await this.service.update({ id, title, description });
+      const task = await new taskService().update({ id, title, description });
 
       return res.status(200).json(task);
       
@@ -80,11 +80,11 @@ export class taskController {
   async complete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      let task = await this.service.read(id);
+      let task = await new taskService().read(id);
 
       task.completed = true;
 
-      task = await this.service.update(task);
+      task = await new taskService().update(task);
 
       return res.status(200).json(task);
 
@@ -99,7 +99,7 @@ export class taskController {
     try {
       const { id } = req.params;
 
-      const task = await this.service.delete(id);
+      const task = await new taskService().delete(id);
 
       return res.status(200).json(task);
 

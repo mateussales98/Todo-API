@@ -7,6 +7,7 @@ export class taskService {
     try {
       const created: Task = await connection.task.create({ data: task });
       return created;
+      
     } catch (error: any) {
       console.log(error);
       throw new errorResponse(500, "Internal Server Error");
