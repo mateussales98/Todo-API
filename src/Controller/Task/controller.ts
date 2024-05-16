@@ -83,6 +83,7 @@ export class taskController {
       let task = await new taskService().read(id);
 
       task.completed = true;
+      task.completed_at = new Date();
 
       task = await new taskService().update(task);
 
