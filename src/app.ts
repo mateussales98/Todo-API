@@ -1,7 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { router } from "./routes";
-import { erroMiddleware } from "./Routes/Middlewares/Error/middleware";
 import { errorResponse } from "./Routes/Middlewares/Error/errorResponse";
 
 const app = express();

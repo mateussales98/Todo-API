@@ -13,7 +13,7 @@ model Task {
   title        String
   description  String
   completed    Boolean   @default(false)
-  completed_at DateTime? @db.Date
+  completed_at DateTime? @db.Timestamptz(6)
 }
 
 model Permission {
