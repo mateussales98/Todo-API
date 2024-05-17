@@ -1,4 +1,4 @@
-import { Task } from "@prisma/client";
+import { Task } from "../../../prisma/database/main";
 import connection from "../../prisma";
 import { errorResponse } from "../../Routes/Middlewares/Error/errorResponse";
 
