@@ -169,7 +169,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\usuario022\\Desktop\\GitHub\\Todo-API\\prisma\\database\\main",
+      "value": "C:\\Users\\Carlos Augusto\\Documents\\Github\\Todo-API\\prisma\\database\\main",
       "fromEnvVar": null
     },
     "config": {
