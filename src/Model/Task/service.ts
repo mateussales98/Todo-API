@@ -25,7 +25,7 @@ export class taskService {
   }
   async readAll(): Promise<Task[]> {
     try {
-      const findedAll: Task[] = await connection.task.findMany();
+      const findedAll: Task[] = await connection.task.findMany({orderBy:{created_at:'desc'}});
       return findedAll;
     } catch (error: any) {
       throw new errorResponse(500, "Internal Server Error");
