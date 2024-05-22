@@ -10,11 +10,9 @@ const app = express();
 
 const PORT = 8000
 
-const CORS = process.env.NODE_ENV === "production" ? "https://todo-cancasticos-projects.vercel.app": "http://localhost:8000"
-
 app.use(express.json());
 
-app.use(cors({origin:CORS}));
+app.use(cors());
 
 app.use(router);
 
